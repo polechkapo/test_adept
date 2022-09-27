@@ -1,4 +1,4 @@
-#test_adept
+# test_adept
 how to open project:
 
 write 2 commands in terminal:
