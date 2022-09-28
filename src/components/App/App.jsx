@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import Table from "../Table/Table";
 import TableContent from "../TableContent/TableContent";
 import TableHead from "../TableHead/TableHead";
-// import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const companies = useSelector(state => state.companiesSlice.companies);

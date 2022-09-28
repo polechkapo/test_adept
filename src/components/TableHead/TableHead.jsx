@@ -8,7 +8,7 @@ function TableHead({titles}) {
    const handleCheckboxAll = (event) => {
       const {className} = event.target;
       if(className === 'companies') {dispatch(changeCompanies())}
-      dispatch(changeEmployees())
+      if(className === 'employees') {dispatch(changeEmployees())}
    }
    return (
       <thead>
