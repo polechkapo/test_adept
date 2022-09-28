@@ -50,6 +50,7 @@ const initialState = {
 
   ],
   currentEmployees: [],
+  titles: ['Сотрудники', 'Фамилия', 'Имя', 'Должность', 'employees', 2],
 };
 
 const employeesSlice = createSlice({
@@ -57,15 +58,18 @@ const employeesSlice = createSlice({
   initialState,
   reducers: {
     changeEmployees: (state, action) => {
-        if (action.payload) { state.currentEmployees.map((el => (el.id === +action.payload) && (el.status = !el.status))) }
-        else { state.currentEmployees.map(el => (el.status = !el.status))}
-        console.log(state.currentEmployees)
+      if (action.payload) { state.currentEmployees.map((el => (el.id === +action.payload) && (el.status = !el.status))) }
+      else { state.currentEmployees.map(el => (el.status = !el.status)) }
     },
     initCurrentEmployees: (state, action) => {
-      if (action.payload.checked === true) {
+      if (action.payload?.checked) {
         state.currentEmployees = state.employees.filter(el => el.company_id === +action.payload.id)
       }
       else { state.currentEmployees = [] }
+    },
+    deleteEmployee: (state, action) => {
+      state.currentEmployees = state.currentEmployees.filter(el => el.id !== +action.payload)
+      state.employees = state.employees.filter(el => el.id !== +action.payload)
     }
   },
   extraReducers: () => {
@@ -74,5 +78,6 @@ const employeesSlice = createSlice({
 
 export const { changeEmployees } = employeesSlice.actions;
 export const { initCurrentEmployees } = employeesSlice.actions;
+export const { deleteEmployee } = employeesSlice.actions;
 
 export default employeesSlice.reducer;
