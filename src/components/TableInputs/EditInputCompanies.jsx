@@ -10,22 +10,25 @@ function EditInput({ el, setShow }) {
       event.preventDefault()
       const companyName = event.target.companyName.value;
       const companyAddress = event.target.companyAddress.value;
-      const {id} = event.target;
-      dispatch(editCompany({id, companyName, companyAddress}))
+      const { id } = event.target;
+      dispatch(editCompany({ id, companyName, companyAddress }))
       setShow(false)
    }
 
    return (
-      <div className='table__form-empl' id={el.id}>
-         <form onSubmit={handleForm} id={el.id}>
-            <label htmlFor="companyName">
-               <input type="text" name="companyName" defaultValue={el.name} />
-            </label>
-            <label htmlFor="companyAddress">
-               <input type="text" name="companyAddress" defaultValue={el.address} />
-            </label>
-            <button type='submit'>Готово</button>
-         </form>
+      <div className="modal">
+         <div className="modal__content">
+         <h3>Изменить данные о компании</h3>
+               <form onSubmit={handleForm} id={el.id} className="table__form">
+                  <label htmlFor="companyName">
+                     <input type="text" name="companyName" defaultValue={el.name} className="table__input" />
+                  </label>
+                  <label htmlFor="companyAddress">
+                     <textarea type="text" name="companyAddress" defaultValue={el.address} className="table__input" />
+                  </label>
+                  <button type='submit' className='table__button'>Готово</button>
+               </form>
+         </div>
       </div>
    );
 }

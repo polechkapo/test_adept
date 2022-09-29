@@ -17,19 +17,22 @@ function EditInputEmp({ el, setShow }) {
    }
 
    return (
-      <div className='table__form-empl' id={el.id}>
-         <form onSubmit={handleForm} id={el.id}>
+      <div className="modal">
+         <div className="modal__content">
+         <h3>Изменить данные о cотруднике</h3>
+         <form onSubmit={handleForm} id={el.id} className="table__form">
             <label htmlFor="companyName">
-               <input type="text" name="firstName" defaultValue={el.firstName} />
+               <input type="text" name="firstName" defaultValue={el.firstName} className="table__input" />
             </label>
             <label htmlFor="companyAddress">
-               <input type="text" name="lastName" defaultValue={el.lastName} />
+               <input type="text" name="lastName" defaultValue={el.lastName} className="table__input"/>
             </label>
             <label htmlFor="companyAddress">
-               <input type="text" name="position" defaultValue={el.position} />
+               <input type="text" name="position" defaultValue={el.position} className="table__input" />
             </label>
-            <button type='submit'>Готово</button>
+            <button type='submit' className='table__button'>Готово</button>
          </form>
+      </div>
       </div>
    );
 }

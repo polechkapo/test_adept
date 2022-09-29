@@ -13,12 +13,12 @@ function Page() {
    return (
       <div className='table'>
          <div className='table__container'>
-         <Table className='table__content'>
+         <Table className='table__content' titles={titles1}>
             <TableHead titles={titles1} />
             <TableContent companies={companies} />
          </Table>
          {employees.length > 0 &&
-            <Table>
+            <Table titles={titles2}>
                <TableHead titles={titles2} />
                <TableContent employees={employees} />
             </Table>
