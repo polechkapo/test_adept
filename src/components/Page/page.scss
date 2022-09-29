@@ -1,0 +1,53 @@
+.table {
+
+   &__container {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 50px;
+      gap: 50px;
+   }
+
+   &__form-empl {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+   }
+
+   h3 {
+      margin: 0;
+   }
+
+
+   table {
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      text-align: center;
+      border-collapse: collapse;
+      border-spacing: 5px;
+      background: #E1E3E0;
+      border-radius: 20px;
+      padding: 10px;
+   }
+
+   th {
+      font-size: 22px;
+      font-weight: 300;
+      padding: 15px 20px;
+      border-bottom: 2px solid #F56433;
+      color: #F56433;
+   }
+
+   thead tr {
+      border-bottom: 2px solid #F56433;
+      width: 100%;
+      text-align: left;
+   }
+
+   td {
+      color: #8D8173;
+      text-align: left;
+      padding: 15px 20px;
+   }
+}

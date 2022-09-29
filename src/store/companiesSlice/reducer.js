@@ -21,7 +21,10 @@ const companiesSlice = createSlice({
       },
       deleteCompany: (state, action) => {
          state.companies = state.companies.filter(el => el.id !== +action.payload);
-       }
+      },
+      editCompany: (state, action) => {
+         state.companies = state.companies.map((el) => el.id === +action.payload.id ? {...el, name: action.payload.companyName, address: action.payload.companyAddress} : el)
+      }
    },
    extraReducers: () => {
    },
@@ -29,5 +32,6 @@ const companiesSlice = createSlice({
 
 export const { changeCompanies } = companiesSlice.actions;
 export const { deleteCompany } = companiesSlice.actions;
+export const { editCompany } = companiesSlice.actions;
 
 export default companiesSlice.reducer;

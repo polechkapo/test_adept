@@ -70,7 +70,10 @@ const employeesSlice = createSlice({
     deleteEmployee: (state, action) => {
       state.currentEmployees = state.currentEmployees.filter(el => el.id !== +action.payload)
       state.employees = state.employees.filter(el => el.id !== +action.payload)
-    }
+    },
+    editEmployee: (state, action) => {
+      state.currentEmployees = state.currentEmployees.map((el) => el.id === +action.payload.id ? {...el, firstName: action.payload.firstName, lastName: action.payload.lastName, position: action.payload.position} : el)
+   }
   },
   extraReducers: () => {
   },
@@ -79,5 +82,6 @@ const employeesSlice = createSlice({
 export const { changeEmployees } = employeesSlice.actions;
 export const { initCurrentEmployees } = employeesSlice.actions;
 export const { deleteEmployee } = employeesSlice.actions;
+export const { editEmployee } = employeesSlice.actions;
 
 export default employeesSlice.reducer;

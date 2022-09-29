@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Table from "../Table/Table";
 import TableContent from "../TableContent/TableContent";
 import TableHead from "../TableHead/TableHead";
+import './page.scss'
 
 function Page() {
    const companies = useSelector(state => state.companiesSlice.companies);
@@ -10,8 +11,9 @@ function Page() {
    const titles1 = useSelector(state => state.companiesSlice.titles);
    const titles2 = useSelector(state => state.employeesSlice.titles);
    return (
-      <>
-         <Table>
+      <div className='table'>
+         <div className='table__container'>
+         <Table className='table__content'>
             <TableHead titles={titles1} />
             <TableContent companies={companies} />
          </Table>
@@ -21,7 +23,8 @@ function Page() {
                <TableContent employees={employees} />
             </Table>
          }
-      </>
+      </div>
+      </div>
    );
 }
 
