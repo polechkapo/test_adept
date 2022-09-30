@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCompanies, deleteCompany } from '../../store/companiesSlice/reducer';
 import { changeEmployees, initCurrentEmployees, deleteEmployee } from '../../store/employeesSlice/reducer';
-import EditInputCompanies from '../TableInputs/EditInputCompanies';
-import EditInputEmp from '../TableInputs/EditInputEmp';
+import EditInputCompanies from '../TableInputs/EditIModalCompanies';
+import EditInputEmp from '../TableInputs/EditIModalEmp';
 
 function TableContent(props) {
 
@@ -16,10 +16,10 @@ function TableContent(props) {
    const handleCheckBox = (event) => {
       const { id, className, checked } = event.target;
       if (className === 'companies') {
-         dispatch(changeCompanies(id))
+         dispatch(changeCompanies({id}))
          dispatch(initCurrentEmployees({ id, checked }))
       }
-      if (className === 'employees') { dispatch(changeEmployees(id)) }
+      if (className === 'employees') { dispatch(changeEmployees({id})) }
    }
 
    const handleButton = (event) => {
@@ -34,13 +34,13 @@ function TableContent(props) {
 
    return (
       <tbody>
-         {props.companies?.map((el) => {
+         { props.companies?.map((el) => {
             return <tr key={el.id} className='companies' style={{ backgroundColor: el.status && 'white' }}>
                <td>{el.name}</td>
                <td>{employees.filter(emp => emp.company_id === el.id).length}</td>
                <td>{el.address}</td>
                <td><input type="checkbox" name='input__checkbox' className='companies' id={el.id} checked={el.status && 'checked'} onChange={handleCheckBox} /></td>
-               {el.status &&
+               {el.status && 
                   <>
                   <td><button id={el.id} className='companies' onClick={handleButton}>Удалить</button></td>
                   <td><button id={el.id} className='employees' onClick={() => { setInputId(el.id); setShow(!show) }}>Изменить</button></td>
@@ -64,7 +64,6 @@ function TableContent(props) {
                   </>
                }
             </tr>
-
          })}
       </tbody>
 

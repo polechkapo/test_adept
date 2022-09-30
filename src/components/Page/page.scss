@@ -16,9 +16,13 @@
       padding: 10px;
       align-items: center;
       margin-top: 30px;
+      &-add {
+         margin-top: 0;
+         gap: 15px;
+      }
    }
 
-   &__input {
+   &__input, select {
       width: 350px;
       background: #FFFFFF;
       border: none;
@@ -37,6 +41,13 @@
       margin-bottom: 10px;
       color: dimgrey;
       padding: 10px;
+
+      &-title {
+         color: #8D8173;
+         padding: 10px;
+         font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+         border: 2px solid #8D8173;
+      }
    }
 
 
@@ -54,6 +65,15 @@
       font-size: 30px;
       font-weight: 300;
       padding: 15px 20px;
+      margin: 0;
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+      color: #8D8173;
+      white-space: nowrap;
+   }
+
+   h4 {
+      font-size: 20px;
+      font-weight: 300;
       margin: 0;
       font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
       color: #8D8173;

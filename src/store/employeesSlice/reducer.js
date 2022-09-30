@@ -50,7 +50,7 @@ const initialState = {
 
   ],
   currentEmployees: [],
-  titles: ['Сотрудники', 'Фамилия', 'Имя', 'Должность', 'employees', 2],
+  titles: ['Сотрудники', 'Фамилия', 'Имя', 'Должность', 'employees', 2, 'cотрудника'],
 };
 
 const employeesSlice = createSlice({
@@ -58,8 +58,14 @@ const employeesSlice = createSlice({
   initialState,
   reducers: {
     changeEmployees: (state, action) => {
-      if (action.payload) { state.currentEmployees.map((el => (el.id === +action.payload) && (el.status = !el.status))) }
-      else { state.currentEmployees.map(el => (el.status = !el.status)) }
+      if (action.payload.id) { state.currentEmployees.map((el => el.id === +action.payload.id && (el.status = !el.status))) }
+      else {
+        if (action.payload.checked) {
+          state.currentEmployees = state.currentEmployees.map(el => ({ ...el, status: true }))
+        } else {
+          state.currentEmployees = state.currentEmployees.map(el => ({ ...el, status: false }))
+        }
+      }
     },
     initCurrentEmployees: (state, action) => {
       if (action.payload?.checked) {
@@ -72,8 +78,11 @@ const employeesSlice = createSlice({
       state.employees = state.employees.filter(el => el.id !== +action.payload)
     },
     editEmployee: (state, action) => {
-      state.currentEmployees = state.currentEmployees.map((el) => el.id === +action.payload.id ? {...el, firstName: action.payload.firstName, lastName: action.payload.lastName, position: action.payload.position} : el)
-   }
+      state.currentEmployees = state.currentEmployees.map((el) => el.id === +action.payload.id ? { ...el, firstName: action.payload.firstName, lastName: action.payload.lastName, position: action.payload.position } : el)
+    },
+    // addEmployee: (state, action) => {
+    //   state.employees = state.employees = [...state.employees, { id: (state.employees[state.employees.length + 1].id), firstName: action.payload.firstName, lastName: action.payload.lastName, position: action.payload.position, status: false }]
+    // }
   },
   extraReducers: () => {
   },
@@ -83,5 +92,6 @@ export const { changeEmployees } = employeesSlice.actions;
 export const { initCurrentEmployees } = employeesSlice.actions;
 export const { deleteEmployee } = employeesSlice.actions;
 export const { editEmployee } = employeesSlice.actions;
+export const { addEmployee } = employeesSlice.actions;
 
 export default employeesSlice.reducer;
