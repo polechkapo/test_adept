@@ -12,17 +12,20 @@ function Page() {
    const titles1 = useSelector(state => state.companiesSlice.titles);
    const titles2 = useSelector(state => state.employeesSlice.titles);
    const [modal, setModal] = useState(false);
+   const [check, setCheck] = useState([]);
+
+
    return (
       <div className='table'>
          <div className='table__container'>
-            <Table className='table__content' titles={titles1}>
-               <TableHead titles={titles1} />
-               <TableContent companies={companies} />
+            <Table className='table__content' titles={titles1} check={check}>
+               <TableHead titles={titles1} check={check} />
+               <TableContent companies={companies} setCheck={setCheck} />
             </Table>
             {employees.length > 0 ?
                <Table titles={titles2}>
-                  <TableHead titles={titles2} />
-                  <TableContent employees={employees} />
+                  <TableHead titles={titles2} check={check} />
+                  <TableContent employees={employees} setCheck={setCheck} />
                </Table>
                : <button
                   className='table__button table__button-title'

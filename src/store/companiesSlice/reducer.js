@@ -26,13 +26,18 @@ const companiesSlice = createSlice({
          }
       },
       deleteCompany: (state, action) => {
-         state.companies = state.companies.filter(el => el.id !== +action.payload);
+         if (+action.payload === 'number') {
+            state.companies = state.companies.filter(el => el.id !== +action.payload)
+         }
+         else {
+            state.companies = state.companies.filter(el => el.status !== true)
+         };
       },
       editCompany: (state, action) => {
          state.companies = state.companies.map((el) => el.id === +action.payload.id ? { ...el, name: action.payload.companyName, address: action.payload.companyAddress } : el)
       },
       addCompany: (state, action) => {
-         state.companies = [...state.companies,{id:(state.companies.length + 1), name: action.payload.name, people: 0, address: action.payload.address, status: false}]
+         state.companies = [...state.companies, { id: (initialState.companies.length + 1), name: action.payload.name, people: 0, address: action.payload.address, status: false }]
       }
    },
    extraReducers: () => {

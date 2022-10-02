@@ -10,7 +10,7 @@ function ModalAddCompany({ setModal }) {
       event.preventDefault();
       const name = event.target.companyName.value;
       const address = event.target.companyAddress.value;
-      if(name !== '' && address !== '') {dispatch(addCompany({ name, address }))}
+      if (name !== '' && address !== '') { dispatch(addCompany({ name, address })) }
       setModal(false)
    }
 

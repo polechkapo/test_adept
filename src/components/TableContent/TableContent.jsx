@@ -13,13 +13,13 @@ function TableContent(props) {
    const employees = useSelector(state => state.employeesSlice.employees);
 
    const dispatch = useDispatch();
-   const handleCheckBox = (event) => {
+   function handleCheckBox(event) {
       const { id, className, checked } = event.target;
       if (className === 'companies') {
-         dispatch(changeCompanies({id}))
+         dispatch(changeCompanies({ id }))
          dispatch(initCurrentEmployees({ id, checked }))
       }
-      if (className === 'employees') { dispatch(changeEmployees({id})) }
+      if (className === 'employees') { dispatch(changeEmployees({ id })) }
    }
 
    const handleButton = (event) => {
@@ -34,21 +34,20 @@ function TableContent(props) {
 
    return (
       <tbody>
-         { props.companies?.map((el) => {
+         {props.companies?.map((el) => {
             return <tr key={el.id} className='companies' style={{ backgroundColor: el.status && 'white' }}>
                <td>{el.name}</td>
                <td>{employees.filter(emp => emp.company_id === el.id).length}</td>
                <td>{el.address}</td>
                <td><input type="checkbox" name='input__checkbox' className='companies' id={el.id} checked={el.status && 'checked'} onChange={handleCheckBox} /></td>
-               {el.status && 
+               {el.status &&
                   <>
-                  <td><button id={el.id} className='companies' onClick={handleButton}>Удалить</button></td>
-                  <td><button id={el.id} className='employees' onClick={() => { setInputId(el.id); setShow(!show) }}>Изменить</button></td>
-                  <td>{inputId === el.id && show && <EditInputCompanies el={el} setShow={setShow} />}</td>
-                  </>
-               }
-            </tr>
-            
+                     <td><button id={el.id} className='companies' onClick={handleButton}>Удалить</button></td>
+                     <td><button id={el.id} className='employees' onClick={() => { setInputId(el.id); setShow(!show); }}>Изменить</button></td>
+                     <td>{inputId === el.id && show && <EditInputCompanies el={el} setShow={setShow} />}</td>
+                  </>}
+            </tr>;
+
          })}
          {props.employees?.map((el) => {
             return <tr key={el.id} className='employees' style={{ backgroundColor: el.status && 'white' }}>
@@ -59,11 +58,10 @@ function TableContent(props) {
                {el.status &&
                   <>
                      <td><button id={el.id} className='employees' onClick={handleButton}>Удалить</button></td>
-                     <td><button id={el.id} className='employees' onClick={() => { setInputId(el.id); setShow(!show) }}>Изменить</button></td>
+                     <td><button id={el.id} className='employees' onClick={() => { setInputId(el.id); setShow(!show); }}>Изменить</button></td>
                      <td>{inputId === el.id && show && <EditInputEmp el={el} setShow={setShow} />}</td>
-                  </>
-               }
-            </tr>
+                  </>}
+            </tr>;
          })}
       </tbody>
 

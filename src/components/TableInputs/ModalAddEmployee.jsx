@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEmployee } from '../../store/employeesSlice/reducer';
+import { addEmployee, initCurrentEmployees } from '../../store/employeesSlice/reducer';
 
 function ModalAddEmployee({ setModal }) {
 
@@ -14,7 +14,10 @@ function ModalAddEmployee({ setModal }) {
       const lastName = event.target.lastName.value;
       const position = event.target.position.value;
       const company_id = event.target.company.value;
-      dispatch(addEmployee({firstName,lastName,position,company_id}))
+      if (firstName !== '' || lastName !== '' || position !== '') {
+         dispatch(addEmployee({ firstName, lastName, position, company_id }));
+         dispatch(initCurrentEmployees())
+      }
       setModal(false)
    }
 
