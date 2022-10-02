@@ -1,144 +1,143 @@
 .table {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
 
-   &__container {
-      display: flex;
-      flex-direction: column;
-      width: 90%;
-      margin: 0 auto;
-      margin-top: 50px;
-      gap: 30px;
-      margin-bottom: 50px;
-   }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    align-items: center;
+    margin-top: 30px;
 
-   &__form {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      padding: 10px;
-      align-items: center;
-      margin-top: 30px;
+    &-add {
+      margin-top: 0;
+      gap: 15px;
+    }
+  }
 
-      &-add {
-         margin-top: 0;
-         gap: 15px;
-      }
-   }
+  &__input,
+  select {
+    width: 350px;
+    background: #ffffff;
+    border: none;
+    border-radius: 100px;
+    color: #8d8173;
+    padding: 10px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  }
 
-   &__input,
-   select {
-      width: 350px;
-      background: #FFFFFF;
-      border: none;
-      border-radius: 100px;
-      color: #8D8173;
+  &__button {
+    width: 150px;
+    background: #ffffff;
+    border: none;
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 8%);
+    border-radius: 100px;
+    margin-bottom: 10px;
+    color: #8d8173;
+    padding: 10px;
+
+    &-title {
+      color: #8d8173;
       padding: 10px;
       font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-   }
+      border: 2px solid #8d8173;
+    }
+  }
 
-   &__button {
-      width: 150px;
-      background: #FFFFFF;
-      border: none;
-      box-shadow: 0px 4px 20px rgb(0 0 0 / 8%);
-      border-radius: 100px;
-      margin-bottom: 10px;
-      color: #8D8173;
-      padding: 10px;
-
-      &-title {
-         color: #8D8173;
-         padding: 10px;
-         font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-         border: 2px solid #8D8173;
-      }
-   }
-
-   &__buttons {
-      margin-top: 20px;
-      margin-left: 20px;
-      display: flex;
-      gap: 20px;
-   }
+  &__buttons {
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    gap: 20px;
+  }
 }
 
 .modal {
-   height: 100vh;
-   width: 100vw;
-   background-color: rgba(255, 255, 255, 0.4);
-   position: fixed;
-   top: 0;
-   left: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   transition: 0.5s;
-   opacity: 1;
-   pointer-events: all;
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  opacity: 1;
+  pointer-events: all;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 
-   &__content {
-      padding: 20px;
-      border-radius: 15px;
-      background-color: #E1E3E0;
-      width: 50vw;
-      transition: 0.4s all;
-      width: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-   }
+  &__content {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #e1e3e0;
+    width: 50vw;
+    transition: 0.4s all;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .companies button,
 .employees button {
-   width: 150px;
-   background: #FFFFFF;
-   border-radius: 100px;
-   margin-bottom: 10px;
-   color: #8D8173;
-   padding: 10px;
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-   border: 2px solid #8D8173;
+  width: 150px;
+  background: #ffffff;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  color: #8d8173;
+  padding: 10px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  border: 2px solid #8d8173;
 }
 
 table {
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-   text-align: center;
-   border-collapse: collapse;
-   border-spacing: 5px;
-   border-radius: 20px;
-   padding: 10px;
-   background-color: #E1E3E0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #e1e3e0;
 }
 
 h3 {
-   font-size: 30px;
-   font-weight: 300;
-   padding: 15px 20px;
-   margin: 0;
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-   color: #8D8173;
-   white-space: nowrap;
+  font-size: 30px;
+  font-weight: 300;
+  padding: 15px 20px;
+  margin: 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  color: #8d8173;
+  white-space: nowrap;
 }
 
 h4 {
-   font-size: 20px;
-   font-weight: 300;
-   margin: 0;
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-   color: #8D8173;
-   white-space: nowrap;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  color: #8d8173;
+  white-space: nowrap;
 }
 
 thead tr {
-   width: 100%;
-   text-align: left;
+  width: 100%;
+  text-align: left;
 }
 
 td,
 label {
-   color: #8D8173;
-   text-align: left;
-   padding: 15px 20px;
-   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  color: #8d8173;
+  text-align: left;
+  padding: 15px 20px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 }
