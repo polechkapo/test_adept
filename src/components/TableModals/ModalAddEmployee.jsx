@@ -24,16 +24,16 @@ function ModalAddEmployee({ setModal }) {
   };
 
   return (
-    <div className='modal'>
+    <div className='modal'  onClick={() => setModal(false)}>
       <div className='modal__content'>
         <h3>Добавить сотрудника</h3>
         <form className='table__form table__form-add' onSubmit={handleForm}>
           <h4>Выберите компанию:</h4>
           <select name='company'>
-            {companies.map((el) => {
+            {companies.map((company) => {
               return (
-                <option id={el.id} value={el.id} key={el.id}>
-                  {el.name}
+                <option id={company.id} value={company.id} key={company.id}>
+                  {company.name}
                 </option>
               );
             })}

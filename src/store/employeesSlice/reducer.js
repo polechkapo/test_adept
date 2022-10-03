@@ -142,28 +142,28 @@ const employeesSlice = createSlice({
     changeEmployees: (state, action) => {
       if (action.payload.id) {
         state.currentEmployees.map(
-          (el) => el.id === +action.payload.id && (el.status = !el.status)
+          (employee) => employee.id === +action.payload.id && (employee.status = !employee.status)
         );
         state.employees.map(
-          (el) => el.id === +action.payload.id && (el.status = !el.status)
+          (employee) => employee.id === +action.payload.id && (employee.status = !employee.status)
         );
       } else {
         if (action.payload.checked) {
-          state.currentEmployees = state.currentEmployees.map((el) => ({
-            ...el,
+          state.currentEmployees = state.currentEmployees.map((employee) => ({
+            ...employee,
             status: true,
           }));
           const company_id = state.currentEmployees[0].company_id;
-          state.employees = state.employees.map((el) =>
-            el.company_id === company_id ? { ...el, status: true } : el
+          state.employees = state.employees.map((employee) =>
+            employee.company_id === company_id ? { ...employee, status: true } : employee
           );
         } else {
-          state.currentEmployees = state.currentEmployees.map((el) => ({
-            ...el,
+          state.currentEmployees = state.currentEmployees.map((employee) => ({
+            ...employee,
             status: false,
           }));
-          state.employees = state.employees.map((el) => ({
-            ...el,
+          state.employees = state.employees.map((employee) => ({
+            ...employee,
             status: false,
           }));
         }
@@ -172,7 +172,7 @@ const employeesSlice = createSlice({
     initCurrentEmployees: (state, action) => {
       if (action.payload?.checked) {
         state.currentEmployees = state.employees.filter(
-          (el) => el.company_id === +action.payload.id
+          (employee) => employee.company_id === +action.payload.id
         );
       } else {
         state.currentEmployees = [];
@@ -181,29 +181,29 @@ const employeesSlice = createSlice({
     deleteEmployee: (state) => {
       const company_id = state.currentEmployees[0].company_id;
       state.currentEmployees = state.currentEmployees.filter(
-        (el) => el.status !== true
+        (employee) => employee.status !== true
       );
       state.employees = state.employees.filter(
-        (el) => el.id !== company_id && el.status !== true
+        (employee) => employee.id !== company_id && employee.status !== true
       );
     },
     editEmployee: (state, action) => {
-      state.currentEmployees = state.currentEmployees.map((el) =>
-        el.id === +action.payload.id
+      state.currentEmployees = state.currentEmployees.map((employee) =>
+        employee.id === +action.payload.id
           ? {
-              ...el,
+              ...employee,
               firstName: action.payload.firstName,
               lastName: action.payload.lastName,
               position: action.payload.position,
             }
-          : el
+          : employee
       );
     },
     addEmployee: (state, action) => {
       state.employees = [
         ...state.employees,
         {
-          id: state.employees.length + 1,
+          id: new Date().valueOf(),
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,
           position: action.payload.position,
@@ -216,10 +216,6 @@ const employeesSlice = createSlice({
   extraReducers: () => {},
 });
 
-export const { changeEmployees } = employeesSlice.actions;
-export const { initCurrentEmployees } = employeesSlice.actions;
-export const { deleteEmployee } = employeesSlice.actions;
-export const { editEmployee } = employeesSlice.actions;
-export const { addEmployee } = employeesSlice.actions;
+export const { changeEmployees, initCurrentEmployees, deleteEmployee, editEmployee, addEmployee } = employeesSlice.actions;
 
 export default employeesSlice.reducer;

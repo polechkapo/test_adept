@@ -16,7 +16,7 @@ function ModalAddCompany({ setModal }) {
   };
 
   return (
-    <div className='modal'>
+    <div className='modal' onClick={() => setModal(false)}>
       <div className='modal__content'>
         <h3>Добавить компанию</h3>
         <form className='table__form' onSubmit={handleForm}>

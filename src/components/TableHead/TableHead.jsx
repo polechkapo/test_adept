@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux';
 import { deleteCompany } from '../../store/companiesSlice/reducer';
 import { deleteEmployee } from '../../store/employeesSlice/reducer';
 
-function TableHead({ titles, check }) {
+function TableHead({ titles, tableType }) {
   const dispatch = useDispatch();
 
   const handleDeleteAllButton = (event) => {
-    const { id } = event.target;
-    if (id === 'companies') {
+    if (tableType === 'companies') {
       dispatch(deleteCompany());
     } else {
       dispatch(deleteEmployee());
@@ -25,7 +24,6 @@ function TableHead({ titles, check }) {
         <td>
           <button
             onClick={handleDeleteAllButton}
-            id={titles[4]}
             className='table__button'
           >
             Удалить все

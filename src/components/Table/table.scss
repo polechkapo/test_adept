@@ -50,6 +50,11 @@
       font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
       border: 2px solid #8d8173;
     }
+
+    &-add {
+      white-space: nowrap;
+      width: 200px;
+    }
   }
 
   &__buttons {

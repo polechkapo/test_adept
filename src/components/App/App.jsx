@@ -1,9 +1,10 @@
-import Page from '../Page/Page';
+import Table from "../Table/Table";
+
 
 function App() {
   return (
     <div className='App'>
-      <Page />
+      <Table />
     </div>
   );
 }
