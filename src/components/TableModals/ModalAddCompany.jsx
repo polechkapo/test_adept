@@ -17,7 +17,7 @@ function ModalAddCompany({ setModal }) {
 
   return (
     <div className='modal' onClick={() => setModal(false)}>
-      <div className='modal__content'>
+      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
         <h3>Добавить компанию</h3>
         <form className='table__form' onSubmit={handleForm}>
           <label htmlFor='companyName'>

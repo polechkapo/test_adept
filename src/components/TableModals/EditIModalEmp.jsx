@@ -17,7 +17,7 @@ function EditInputEmp({ employee, setShow }) {
 
   return (
     <div className='modal'  onClick={() => setShow(false)}>
-      <div className='modal__content'>
+      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
         <h3>Изменить данные о cотруднике</h3>
         <form onSubmit={handleForm} id={employee.id} className='table__form'>
           <label htmlFor='companyName'>

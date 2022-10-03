@@ -16,7 +16,7 @@ function EditModalCompanies({ company, setShow }) {
 
   return (
     <div className='modal' onClick={() => setShow(false)}>
-      <div className='modal__content'>
+      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
         <h3>Изменить данные о компании</h3>
         <form onSubmit={handleForm} id={company.id} className='table__form'>
           <label htmlFor='companyName'>

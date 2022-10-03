@@ -25,7 +25,7 @@ function ModalAddEmployee({ setModal }) {
 
   return (
     <div className='modal'  onClick={() => setModal(false)}>
-      <div className='modal__content'>
+      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
         <h3>Добавить сотрудника</h3>
         <form className='table__form table__form-add' onSubmit={handleForm}>
           <h4>Выберите компанию:</h4>
