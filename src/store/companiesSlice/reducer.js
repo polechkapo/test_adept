@@ -5,7 +5,6 @@ const initialState = {
     {
       id: 1,
       name: 'Инград',
-      people: 12,
       address:
         '813864, Оренбургская область, город Сергиев Посад, въезд Балканская, 20',
       status: false,
@@ -13,21 +12,19 @@ const initialState = {
     {
       id: 2,
       name: 'Русагро',
-      people: 50,
       address: '794556, Магаданская область, город Ступино, ул. Славы, 11',
       status: false,
     },
     {
       id: 3,
       name: 'Адамас',
-      people: 30,
       address: '114271, Пензенская область, город Озёры, бульвар Гоголя, 25',
       status: false,
     },
     {
       id: 4,
       name: 'Светофор',
-      people: 100,
+
       address:
         '246119, Архангельская область, город Павловский Посад, пр. Гагарина, 23',
       status: false,
@@ -35,7 +32,6 @@ const initialState = {
     {
       id: 5,
       name: 'Велесстрой',
-      people: 90,
       address: '902099, Орловская область, город Талдом, пр. Бухарестская, 78',
       status: false,
     },
@@ -58,17 +54,17 @@ const companiesSlice = createSlice({
     changeCompanies: (state, action) => {
       if (action.payload.id) {
         state.companies.map(
-          (el) => el.id === +action.payload.id && (el.status = !el.status)
+          (company) => company.id === +action.payload.id && (company.status = !company.status)
         );
       } else {
         if (action.payload.checked) {
-          state.companies = state.companies.map((el) => ({
-            ...el,
+          state.companies = state.companies.map((company) => ({
+            ...company,
             status: true,
           }));
         } else {
-          state.companies = state.companies.map((el) => ({
-            ...el,
+          state.companies = state.companies.map((company) => ({
+            ...company,
             status: false,
           }));
         }
@@ -77,28 +73,28 @@ const companiesSlice = createSlice({
     deleteCompany: (state, action) => {
       if (+action.payload === 'number') {
         state.companies = state.companies.filter(
-          (el) => el.id !== +action.payload
+          (company) => company.id !== +action.payload
         );
       } else {
-        state.companies = state.companies.filter((el) => el.status !== true);
+        state.companies = state.companies.filter((company) => company.status !== true);
       }
     },
     editCompany: (state, action) => {
-      state.companies = state.companies.map((el) =>
-        el.id === +action.payload.id
+      state.companies = state.companies.map((company) =>
+        company.id === +action.payload.id
           ? {
-              ...el,
+              ...company,
               name: action.payload.companyName,
               address: action.payload.companyAddress,
             }
-          : el
+          : company
       );
     },
     addCompany: (state, action) => {
       state.companies = [
         ...state.companies,
         {
-          id: initialState.companies.length + 1,
+          id: new Date().valueOf(),
           name: action.payload.name,
           people: 0,
           address: action.payload.address,
@@ -110,9 +106,6 @@ const companiesSlice = createSlice({
   extraReducers: () => {},
 });
 
-export const { changeCompanies } = companiesSlice.actions;
-export const { deleteCompany } = companiesSlice.actions;
-export const { editCompany } = companiesSlice.actions;
-export const { addCompany } = companiesSlice.actions;
+export const { changeCompanies, deleteCompany, editCompany, addCompany } = companiesSlice.actions;
 
 export default companiesSlice.reducer;

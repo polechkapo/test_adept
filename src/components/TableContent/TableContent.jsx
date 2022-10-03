@@ -9,30 +9,30 @@ import {
   initCurrentEmployees,
   deleteEmployee,
 } from '../../store/employeesSlice/reducer';
-import EditInputCompanies from '../TableInputs/EditIModalCompanies';
-import EditInputEmp from '../TableInputs/EditIModalEmp';
+import EditModalCompanies from '../TableModals/EditIModalCompanies';
+import EditInputEmp from '../TableModals/EditIModalEmp';
 
 function TableContent(props) {
-  const [inputId, setInputId] = useState();
+  const [modalId, setModalId] = useState('');
   const [show, setShow] = useState(false);
 
   const employees = useSelector((state) => state.employeesSlice.employees);
 
   const dispatch = useDispatch();
-  function handleCheckBox(event) {
-    const { id, className, checked } = event.target;
-    if (className === 'companies') {
+  const handleCheckBox = (event) => {
+    const { id, checked } = event.target;
+    if (props.tableType === 'companies') {
       dispatch(changeCompanies({ id }));
       dispatch(initCurrentEmployees({ id, checked }));
     }
-    if (className === 'employees') {
+    if (props.tableType === 'employees') {
       dispatch(changeEmployees({ id }));
     }
   }
 
   const handleButton = (event) => {
-    const { id, className } = event.target;
-    if (className === 'employees') {
+    const { id } = event.target;
+    if (props.tableType === 'employees') {
       dispatch(deleteEmployee(id));
     } else {
       dispatch(deleteCompany(id));
@@ -42,33 +42,33 @@ function TableContent(props) {
 
   return (
     <tbody>
-      {props.companies?.map((el) => {
+      {props.companies?.map((company) => {
         return (
           <tr
-            key={el.id}
+            key={company.id}
             className='companies'
-            style={{ backgroundColor: el.status && 'white' }}
+            style={{ backgroundColor: company.status && 'white' }}
           >
-            <td>{el.name}</td>
+            <td>{company.name}</td>
             <td>
-              {employees.filter((emp) => emp.company_id === el.id).length}
+              {employees.filter((emp) => emp.company_id === company.id).length}
             </td>
-            <td>{el.address}</td>
+            <td>{company.address}</td>
             <td>
               <input
                 type='checkbox'
                 name='input__checkbox'
                 className='companies'
-                id={el.id}
-                checked={el.status && 'checked'}
+                id={company.id}
+                checked={company.status && 'checked'}
                 onChange={handleCheckBox}
               />
             </td>
-            {el.status && (
+            {company.status && (
               <>
                 <td>
                   <button
-                    id={el.id}
+                    id={company.id}
                     className='companies'
                     onClick={handleButton}
                   >
@@ -77,10 +77,10 @@ function TableContent(props) {
                 </td>
                 <td>
                   <button
-                    id={el.id}
+                    id={company.id}
                     className='employees'
                     onClick={() => {
-                      setInputId(el.id);
+                      setModalId(company.id);
                       setShow(!show);
                     }}
                   >
@@ -88,8 +88,8 @@ function TableContent(props) {
                   </button>
                 </td>
                 <td>
-                  {inputId === el.id && show && (
-                    <EditInputCompanies el={el} setShow={setShow} />
+                  {modalId === company.id && show && (
+                    <EditModalCompanies company={company} setShow={setShow} />
                   )}
                 </td>
               </>
@@ -97,31 +97,31 @@ function TableContent(props) {
           </tr>
         );
       })}
-      {props.employees?.map((el) => {
+      {props.employees?.map((employee) => {
         return (
           <tr
-            key={el.id}
+            key={employee.id}
             className='employees'
-            style={{ backgroundColor: el.status && 'white' }}
+            style={{ backgroundColor: employee.status && 'white' }}
           >
-            <td>{el.lastName}</td>
-            <td>{el.firstName}</td>
-            <td>{el.position}</td>
+            <td>{employee.lastName}</td>
+            <td>{employee.firstName}</td>
+            <td>{employee.position}</td>
             <td>
               <input
                 type='checkbox'
                 name='input__checkbox'
                 className='employees'
-                id={el.id}
-                checked={el.status && 'checked'}
+                id={employee.id}
+                checked={employee.status && 'checked'}
                 onChange={handleCheckBox}
               />
             </td>
-            {el.status && (
+            {employee.status && (
               <>
                 <td>
                   <button
-                    id={el.id}
+                    id={employee.id}
                     className='employees'
                     onClick={handleButton}
                   >
@@ -130,10 +130,10 @@ function TableContent(props) {
                 </td>
                 <td>
                   <button
-                    id={el.id}
+                    id={employee.id}
                     className='employees'
                     onClick={() => {
-                      setInputId(el.id);
+                      setModalId(employee.id);
                       setShow(!show);
                     }}
                   >
@@ -141,8 +141,8 @@ function TableContent(props) {
                   </button>
                 </td>
                 <td>
-                  {inputId === el.id && show && (
-                    <EditInputEmp el={el} setShow={setShow} />
+                  {modalId === employee.id && show && (
+                    <EditInputEmp employee={employee} setShow={setShow} />
                   )}
                 </td>
               </>

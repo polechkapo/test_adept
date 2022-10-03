@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { editEmployee } from '../../store/employeesSlice/reducer';
 
-function EditInputEmp({ el, setShow }) {
+function EditInputEmp({ employee, setShow }) {
   const dispatch = useDispatch();
 
   const handleForm = (event) => {
@@ -16,15 +16,15 @@ function EditInputEmp({ el, setShow }) {
   };
 
   return (
-    <div className='modal'>
-      <div className='modal__content'>
+    <div className='modal'  onClick={() => setShow(false)}>
+      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
         <h3>Изменить данные о cотруднике</h3>
-        <form onSubmit={handleForm} id={el.id} className='table__form'>
+        <form onSubmit={handleForm} id={employee.id} className='table__form'>
           <label htmlFor='companyName'>
             <input
               type='text'
               name='firstName'
-              defaultValue={el.firstName}
+              defaultValue={employee.firstName}
               className='table__input'
             />
           </label>
@@ -32,7 +32,7 @@ function EditInputEmp({ el, setShow }) {
             <input
               type='text'
               name='lastName'
-              defaultValue={el.lastName}
+              defaultValue={employee.lastName}
               className='table__input'
             />
           </label>
@@ -40,7 +40,7 @@ function EditInputEmp({ el, setShow }) {
             <input
               type='text'
               name='position'
-              defaultValue={el.position}
+              defaultValue={employee.position}
               className='table__input'
             />
           </label>

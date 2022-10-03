@@ -1,60 +1,43 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { changeCompanies } from '../../store/companiesSlice/reducer';
-import { changeEmployees } from '../../store/employeesSlice/reducer';
-import ModalAddCompany from '../TableInputs/ModalAddCompany';
-import ModalAddEmployee from '../TableInputs/ModalAddEmployee';
+import { useSelector } from 'react-redux';
+import TableTitle from '../TableTitle/TableTitle';
+import TableContent from '../TableContent/TableContent';
+import TableHead from '../TableHead/TableHead';
+import ModalAddEmployee from '../TableModals/ModalAddEmployee';
+import './table.scss';
 
-function Table({ children, titles, check }) {
-  const dispatch = useDispatch();
-  const handleCheckboxAll = (event) => {
-    const { className, checked } = event.target;
-    if (className === 'companies') {
-      dispatch(changeCompanies({ checked }));
-    }
-    if (className === 'employees') {
-      dispatch(changeEmployees({ checked }));
-    }
-  };
-
+function Table() {
+  const companies = useSelector((state) => state.companiesSlice.companies);
+  const employees = useSelector(
+    (state) => state.employeesSlice.currentEmployees
+  );
+  const companyTitles = useSelector((state) => state.companiesSlice.titles);
+  const employeesTitles = useSelector((state) => state.employeesSlice.titles);
   const [modal, setModal] = useState(false);
-  const [type, setType] = useState('');
-
-  const handleModal = (event) => {
-    const { id } = event.target;
-    setModal(!modal);
-    setType(id);
-  };
 
   return (
-    <>
-      <div className='table__title'>
-        <h3>{titles[0]}</h3>
-        <label htmlFor='input__checkbox'>
-          Выделить все
-          <input
-            type='checkbox'
-            name='input__checkbox'
-            className={titles[4]}
-            onChange={handleCheckboxAll}
-          />
-        </label>
-        <div className='table__buttons'>
+    <div className='table'>
+      <div className='table__container'>
+        <TableTitle className='table__content' titles={companyTitles}>
+          <TableHead titles={companyTitles} tableType={companyTitles[4]}/>
+          <TableContent companies={companies} tableType={companyTitles[4]}/>
+        </TableTitle>
+        {employees.length > 0 ? (
+          <TableTitle titles={employeesTitles}>
+            <TableHead titles={employeesTitles} tableType={employeesTitles[4]}/>
+            <TableContent employees={employees} tableType={employeesTitles[4]}/>
+          </TableTitle>
+        ) : (
           <button
-            className='table__button table__button-title'
-            id={titles[4]}
-            onClick={handleModal}
+            className='table__button table__button-title table__button-add'
+            onClick={() => setModal(!modal)}
           >
-            Добавить
+            Добавить cотрудника
           </button>
-        </div>
+        )}
+        {modal && <ModalAddEmployee setModal={setModal} />}
       </div>
-      <table>{children}</table>
-      {modal && type === 'companies' && <ModalAddCompany setModal={setModal} />}
-      {modal && type === 'employees' && (
-        <ModalAddEmployee setModal={setModal} />
-      )}
-    </>
+    </div>
   );
 }
 
