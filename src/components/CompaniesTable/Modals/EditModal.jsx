@@ -1,6 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { editCompany } from '../../store/companiesSlice/reducer';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { editCompany } from "../../../store/companiesSlice/reducer";
 
 function EditModalCompanies({ company, setShow }) {
   const dispatch = useDispatch();
@@ -15,27 +15,27 @@ function EditModalCompanies({ company, setShow }) {
   };
 
   return (
-    <div className='modal' onClick={() => setShow(false)}>
-      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
+    <div className="modal" onClick={() => setShow(false)}>
+      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <h3>Изменить данные о компании</h3>
-        <form onSubmit={handleForm} id={company.id} className='table__form'>
-          <label htmlFor='companyName'>
+        <form onSubmit={handleForm} id={company.id} className="table__form">
+          <label htmlFor="companyName">
             <input
-              type='text'
-              name='companyName'
+              type="text"
+              name="companyName"
               defaultValue={company.name}
-              className='table__input'
+              className="table__input"
             />
           </label>
-          <label htmlFor='companyAddress'>
+          <label htmlFor="companyAddress">
             <textarea
-              type='text'
-              name='companyAddress'
+              type="text"
+              name="companyAddress"
               defaultValue={company.address}
-              className='table__input'
+              className="table__input"
             />
           </label>
-          <button type='submit' className='table__button'>
+          <button type="submit" className="table__button">
             Готово
           </button>
         </form>

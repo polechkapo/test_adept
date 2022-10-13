@@ -1,9 +1,9 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addEmployee,
   initCurrentEmployees,
-} from '../../store/employeesSlice/reducer';
+} from "../../../store/employeesSlice/reducer";
 
 function ModalAddEmployee({ setModal }) {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function ModalAddEmployee({ setModal }) {
     const lastName = event.target.lastName.value;
     const position = event.target.position.value;
     const company_id = event.target.company.value;
-    if (firstName !== '' || lastName !== '' || position !== '') {
+    if (firstName !== "" || lastName !== "" || position !== "") {
       dispatch(addEmployee({ firstName, lastName, position, company_id }));
       dispatch(initCurrentEmployees());
     }
@@ -24,12 +24,12 @@ function ModalAddEmployee({ setModal }) {
   };
 
   return (
-    <div className='modal'  onClick={() => setModal(false)}>
-      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
+    <div className="modal" onClick={() => setModal(false)}>
+      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <h3>Добавить сотрудника</h3>
-        <form className='table__form table__form-add' onSubmit={handleForm}>
+        <form className="table__form table__form-add" onSubmit={handleForm}>
           <h4>Выберите компанию:</h4>
-          <select name='company'>
+          <select name="company" className="table__input">
             {companies.map((company) => {
               return (
                 <option id={company.id} value={company.id} key={company.id}>
@@ -38,31 +38,31 @@ function ModalAddEmployee({ setModal }) {
               );
             })}
           </select>
-          <label htmlFor='firstName'>
+          <label htmlFor="firstName">
             <input
-              type='text'
-              name='firstName'
-              className='table__input'
-              placeholder='Имя'
+              type="text"
+              name="firstName"
+              className="table__input"
+              placeholder="Имя"
             />
           </label>
-          <label htmlFor='companyAddress'>
+          <label htmlFor="companyAddress">
             <input
-              type='text'
-              name='lastName'
-              className='table__input'
-              placeholder='Фамилия'
+              type="text"
+              name="lastName"
+              className="table__input"
+              placeholder="Фамилия"
             />
           </label>
-          <label htmlFor='companyName'>
+          <label htmlFor="companyName">
             <input
-              type='text'
-              name='position'
-              className='table__input'
-              placeholder='Должность'
+              type="text"
+              name="position"
+              className="table__input"
+              placeholder="Должность"
             />
           </label>
-          <button type='submit' className='table__button'>
+          <button type="submit" className="table__button">
             Готово
           </button>
         </form>
