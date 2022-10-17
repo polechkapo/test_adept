@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeCompanies } from '../../store/companiesSlice/reducer';
 import { changeEmployees } from '../../store/employeesSlice/reducer';
-import ModalAddCompany from '../TableModals/ModalAddCompany';
-import ModalAddEmployee from '../TableModals/ModalAddEmployee';
+import AddModalCompany from '../CompaniesTable/Modals/AddModal';
+import AddModalEmployee from '../EmployeesTable/Modals/AddModal';
 
-function TableTitle({ children, titles }) {
+function TitleTable({ children, titles }) {
   const dispatch = useDispatch();
   const handleCheckboxAll = (event) => {
     const { checked } = event.target;
@@ -42,10 +42,10 @@ function TableTitle({ children, titles }) {
         </div>
       </div>
       <table>{children}</table>
-      {modal && titles[4] === 'companies' && <ModalAddCompany setModal={setModal} />}
-      {modal && titles[4] === 'employees' && <ModalAddEmployee setModal={setModal} />}
+      {modal && titles[4] === 'companies' && <AddModalCompany setModal={setModal} />}
+      {modal && titles[4] === 'employees' && <AddModalEmployee setModal={setModal} />}
     </>
   );
 }
 
-export default TableTitle;
+export default TitleTable;
